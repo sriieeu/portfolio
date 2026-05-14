@@ -93,7 +93,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe project cards and skill items
-document.querySelectorAll('.project-card, .skill-category, .timeline-item, .stat').forEach(el => {
+document.querySelectorAll('.project-card, .skill-category, .timeline-item').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -110,51 +110,6 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
     }
 });
-
-// Counter animation for stats (preserves trailing "+" when present)
-const stats = document.querySelectorAll('.stat h3');
-
-const animateCounter = (element) => {
-    const original = element.textContent.trim();
-    const wantsPlus = original.includes('+');
-    const target = parseInt(original.replace(/\D/g, ''), 10);
-    if (Number.isNaN(target)) return;
-
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-
-    const counter = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = wantsPlus ? `${target}+` : String(target);
-            clearInterval(counter);
-        } else {
-            const n = Math.floor(current);
-            element.textContent = wantsPlus ? `${n}+` : String(n);
-        }
-    }, 16);
-};
-
-const statsObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                stats.forEach((stat) => {
-                    if (!stat.dataset.counted) {
-                        stat.dataset.counted = '1';
-                        animateCounter(stat);
-                    }
-                });
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    },
-    { threshold: 0.5 }
-);
-
-const aboutStatsEl = document.querySelector('.about-stats');
-if (aboutStatsEl) statsObserver.observe(aboutStatsEl);
 
 // Keyboard Navigation
 document.addEventListener('keydown', (e) => {
