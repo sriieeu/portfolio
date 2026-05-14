@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chintala Sri Charan - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,7 +15,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <i class="fas fa-code"></i> Sri Charan
+                <i class="fas fa-code"></i> Chintala Sri Charan
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -31,10 +34,16 @@
                     <a href="#experience" class="nav-link">Experience</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#extracurricular" class="nav-link">Extra Curricular</a>
+                </li>
+                <li class="nav-item">
                     <a href="#projects" class="nav-link">Projects</a>
                 </li>
                 <li class="nav-item">
                     <a href="#certifications" class="nav-link">Certifications</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://github.com/sriieeu" class="nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                 </li>
             </ul>
             <div class="hamburger">
@@ -49,14 +58,13 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Hi, I'm <span class="highlight">Sri Charan</span></h1>
-            <p class="hero-subtitle">AI/ML Developer | Full Stack Engineer | NLP Enthusiast</p>
+            <p class="hero-subtitle">AI Developer | AI Agent Enthusiast | Cloud and DevOps | NLP Enthusiast</p>
             <p class="hero-description">
-                I build intelligent systems and scalable applications. With expertise in AI/ML, backend development, and cloud technologies,
+                I build intelligent systems and scalable applications. With expertise in AI and AI agents, backend development, cloud platforms, and DevOps,
                 I create solutions that leverage cutting-edge technologies to solve real-world problems.
             </p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="#projects" class="btn btn-secondary">View My Work</a>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
             </div>
         </div>
         <div class="hero-animation">
@@ -73,8 +81,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm an AI/ML engineer and full stack developer pursuing M.Tech in Integrated CSE at Vellore Institute of Technology.
-                        I specialize in building machine learning pipelines, NLP systems, and cloud-deployed applications.
+                        I'm an AI engineer pursuing M.Tech in Integrated CSE at Vellore Institute of Technology.
+                        I specialize in building AI pipelines, NLP systems, and cloud-deployed applications, with strong interest in AI agents, cloud architecture, and DevOps.
                     </p>
                     <p>
                         Currently working as an Undergraduate Research Assistant at AIR Center, focusing on marine species detection using computer vision and deep learning techniques.
@@ -154,7 +162,7 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>AI/ML & Frameworks</h3>
+                    <h3>AI & Frameworks</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">PyTorch</span>
@@ -201,6 +209,15 @@
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra Curricular Activities -->
+    <section id="extracurricular" class="experience">
+        <div class="container">
+            <h2 class="section-title">Extra Curricular Activities</h2>
+            <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
@@ -208,7 +225,7 @@
                         <p class="company">Team Next Nexus, VIT-AP</p>
                         <p class="date">Jul 2024 - Feb 2025</p>
                         <p class="description">
-                            Led team initiatives and coordinated technical projects. Managed team resources and contributed to multiple AI/ML research endeavors.
+                            Led team initiatives and coordinated technical projects. Managed team resources and contributed to multiple AI research endeavors.
                         </p>
                     </div>
                 </div>
@@ -219,7 +236,7 @@
                         <p class="company">Innovators Quest, VIT-AP</p>
                         <p class="date">Aug 2023 - Jul 2024</p>
                         <p class="description">
-                            Co-led research initiatives and managed technical implementations. Collaborated on innovative AI/ML projects and mentored team members.
+                            Co-led research initiatives and managed technical implementations. Collaborated on innovative AI projects and mentored team members.
                         </p>
                     </div>
                 </div>
@@ -243,7 +260,7 @@
                         Implements async fetching with Chrome UA spoofing, parsing HTML via BeautifulSoup/lxml into deterministic JSON.
                     </p>
                     <div class="project-links">
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="https://github.com/sriieeu/web-scraper-mcp" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
 
@@ -258,7 +275,7 @@
                         Built clause segmentation engine and risk scoring system with 20+ pattern detectors for high-risk terms.
                     </p>
                     <div class="project-links">
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="https://github.com/sriieeu/contract-risk-analyzer" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
 
@@ -273,7 +290,7 @@
                         Built end-to-end training, validation, and inference pipelines with optimized adversarial and reconstruction losses.
                     </p>
                     <div class="project-links">
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="https://github.com/sriieeu/Low-Light-Image-Enhancement" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
 
@@ -288,7 +305,7 @@
                         Implemented containerization with Docker, Kubernetes orchestration, SonarQube quality gates, and automated testing achieving 8-stage pipeline in under 10 minutes.
                     </p>
                     <div class="project-links">
-                        <a href="#" class="project-link">GitHub</a>
+                        <a href="https://github.com/sriieeu/boardgame-review" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </div>
@@ -326,7 +343,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="container">
             <p>&copy; 2025 Chintala Sri Charan. All rights reserved.</p>
             <div class="footer-links">

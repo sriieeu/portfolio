@@ -50,34 +50,31 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Form Submission
+// Form submission (only when a contact form exists on the page)
 const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+        const name = document.getElementById('name')?.value ?? '';
+        const email = document.getElementById('email')?.value ?? '';
+        const message = document.getElementById('message')?.value ?? '';
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+        if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+            alert('Please fill in all fields');
+            return;
+        }
 
-    // Basic validation
-    if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-        alert('Please fill in all fields');
-        return;
-    }
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Please enter a valid email address');
+            return;
+        }
 
-    // Email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address');
-        return;
-    }
-
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I will get back to you soon.');
-    contactForm.reset();
-});
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
+    });
+}
 
 // Scroll Animation - Fade in elements on scroll
 const observerOptions = {
@@ -114,35 +111,15 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Skill tag animation on hover
-const skillTags = document.querySelectorAll('.skill-tag');
-skillTags.forEach(tag => {
-    tag.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.1) rotate(2deg)';
-    });
-    tag.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1) rotate(0deg)';
-    });
-});
-
-// Project link hover effects
-const projectLinks = document.querySelectorAll('.project-link');
-projectLinks.forEach(link => {
-    link.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
-        this.style.color = 'white';
-    });
-    link.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = 'white';
-        this.style.color = getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim();
-    });
-});
-
-// Counter Animation for Stats
+// Counter animation for stats (preserves trailing "+" when present)
 const stats = document.querySelectorAll('.stat h3');
 
 const animateCounter = (element) => {
-    const target = parseInt(element.innerText);
+    const original = element.textContent.trim();
+    const wantsPlus = original.includes('+');
+    const target = parseInt(original.replace(/\D/g, ''), 10);
+    if (Number.isNaN(target)) return;
+
     const duration = 2000;
     const increment = target / (duration / 16);
     let current = 0;
@@ -150,28 +127,34 @@ const animateCounter = (element) => {
     const counter = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.innerText = target + '+';
+            element.textContent = wantsPlus ? `${target}+` : String(target);
             clearInterval(counter);
         } else {
-            element.innerText = Math.floor(current) + '+';
+            const n = Math.floor(current);
+            element.textContent = wantsPlus ? `${n}+` : String(n);
         }
     }, 16);
 };
 
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            stats.forEach(stat => {
-                if (stat.innerText.includes('+') === false) {
-                    animateCounter(stat);
-                }
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+const statsObserver = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                stats.forEach((stat) => {
+                    if (!stat.dataset.counted) {
+                        stat.dataset.counted = '1';
+                        animateCounter(stat);
+                    }
+                });
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    },
+    { threshold: 0.5 }
+);
 
-document.querySelector('.about-stats')?.let(el => statsObserver.observe(el));
+const aboutStatsEl = document.querySelector('.about-stats');
+if (aboutStatsEl) statsObserver.observe(aboutStatsEl);
 
 // Keyboard Navigation
 document.addEventListener('keydown', (e) => {
@@ -203,7 +186,6 @@ const createBackToTopButton = () => {
         right: 30px;
         width: 50px;
         height: 50px;
-        background: #3498db;
         color: white;
         border: none;
         border-radius: 50%;
@@ -211,9 +193,8 @@ const createBackToTopButton = () => {
         display: none;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
         z-index: 999;
-        transition: all 0.3s ease;
+        transition: transform 0.25s ease, opacity 0.25s ease;
         font-size: 1.2rem;
     `;
 
@@ -234,14 +215,12 @@ const createBackToTopButton = () => {
         });
     });
 
-    button.addEventListener('mouseenter', function() {
-        this.style.background = '#2980b9';
-        this.style.transform = 'translateY(-5px)';
+    button.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-4px) scale(1.05)';
     });
 
-    button.addEventListener('mouseleave', function() {
-        this.style.background = '#3498db';
-        this.style.transform = 'translateY(0)';
+    button.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0) scale(1)';
     });
 };
 
