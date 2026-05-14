@@ -87,11 +87,12 @@ body.keyboard-nav *:focus-visible {
     align-items: center;
     gap: 0.55rem;
     letter-spacing: -0.02em;
+    text-decoration: none;
 }
 
 .nav-logo i {
     color: var(--accent);
-    font-size: 1.1rem;
+    font-size: 1.35rem;
 }
 
 .nav-menu {
@@ -797,27 +798,16 @@ section {
 .footer .container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.25rem;
-}
-
-@media (min-width: 640px) {
-    .footer .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-.footer p {
-    font-size: 0.95rem;
-    color: color-mix(in srgb, #fff 70%, transparent);
+    align-items: center;
+    justify-content: center;
+    gap: 0;
 }
 
 .footer-links {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem 1.75rem;
+    justify-content: center;
 }
 
 .footer-links a {
@@ -928,7 +918,7 @@ section {
 
     .footer-links {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.65rem;
     }
 }
